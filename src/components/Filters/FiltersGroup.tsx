@@ -82,7 +82,12 @@ const FiltersGroup: React.FC<FiltersProps> = ({ isSearching, categories }) => {
       <div className="flex gap-2">
         <ToggleGroup
           type="single"
-          onValueChange={(value) => setSearchParams({ sort: value })}
+          onValueChange={(value) =>
+            setSearchParams((prev) => {
+              prev.set("sort", value);
+              return prev;
+            })
+          }
         >
           {["name-asc", "name-desc"].includes(sort) ? (
             <Button
