@@ -9,7 +9,7 @@ import { useSearchParams } from "react-router";
 import "./App.css";
 import { filterAndSortingProducts } from "./components/Filters/FilterAndSortingProducts";
 import type { FilterOptions, Product } from "./types";
-import { useGetProducts } from "@/services/useGetProducts";
+import { useGetProducts } from "@/Services/useGetProducts";
 
 function App() {
   const [searchParams] = useSearchParams();
@@ -67,7 +67,7 @@ function App() {
 
           <FiltersGroup
             isSearching={isSearching}
-            categories={categories || []}
+            categories={categories as string[]}
           />
         </div>
       </div>
