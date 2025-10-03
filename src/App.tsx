@@ -9,7 +9,7 @@ import { useSearchParams } from "react-router";
 import "./App.css";
 import { filterAndSortingProducts } from "./components/Filters/FilterAndSortingProducts";
 import type { FilterOptions, Product } from "./types";
-import { useGetProducts } from "./services/useGetProducts";
+import { useGetProducts } from "@/services/useGetProducts";
 
 function App() {
   const [searchParams] = useSearchParams();
