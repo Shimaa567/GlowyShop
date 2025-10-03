@@ -4,12 +4,12 @@ import ErrorState from "./components/ErrorState";
 import FiltersGroup from "./components/Filters/FiltersGroup";
 import ProductCard from "./components/ProductCard";
 import useDebounce from "./hooks/useDebounce";
-import { useGetProducts } from "./services/useGetProducts";
 
 import { useSearchParams } from "react-router";
 import "./App.css";
 import { filterAndSortingProducts } from "./components/Filters/FilterAndSortingProducts";
-import type { FilterOptions } from "./types";
+import type { FilterOptions, Product } from "./types";
+import { useGetProducts } from "./services/useGetProducts";
 
 function App() {
   const [searchParams] = useSearchParams();
@@ -22,7 +22,7 @@ function App() {
 
   const isSearching = search !== debouncedSearch;
 
-  const categories = [...new Set(products?.map((p) => p.category) || [])];
+  const categories = [...new Set(products?.map((p: Product) => p.category))];
 
   const filters: FilterOptions = {
     search,
@@ -65,7 +65,10 @@ function App() {
             Made to fit every woman’s lifestyle, delivered with love.
           </h3>
 
-          <FiltersGroup isSearching={isSearching} categories={categories} />
+          <FiltersGroup
+            isSearching={isSearching}
+            categories={categories || []}
+          />
         </div>
       </div>
       {filteredProducts?.length ? (
